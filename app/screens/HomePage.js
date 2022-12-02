@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
         color: color.honey
     },
     account: {
-        fontFamily: 'Baloo-Regular'
+        fontFamily: 'Baloo-Regular',
         position: 'absolute',
         fontSize: 26 * windowWidth / 844,
         bottom: 0,
