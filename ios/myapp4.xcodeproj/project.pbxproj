@@ -12,20 +12,20 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		7699B88040F8A987B510C191 /* libPods-myapp4-myapp4Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-myapp4-myapp4Tests.a */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		B63E151802944E24A7D80021 /* Baloo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3C5644AAA3E420B81EA3E4B /* Baloo.ttf */; };
 		5A44B41166C74DC1891A62AB /* Bangers-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC56265DD84B4AEFB173C583 /* Bangers-Regular.ttf */; };
-		E55B4338B45C47D999D9E6C5 /* Baloo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC563E2F3DAD45E99472BD84 /* Baloo-Regular.ttf */; };
-		95A005E116B44150AF04BDB0 /* BalooBhai-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 893C6ABFD9BE4A36835AF571 /* BalooBhai-Regular.ttf */; };
-		999EAF6911954C9DB7D7B53E /* BalooBhaijaan-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37B61DE6DCD14137819322AD /* BalooBhaijaan-Regular.ttf */; };
-		DBA4E31DF9CB487B95B6982B /* BalooBhaina-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1E955F1ACB984D659D0AF820 /* BalooBhaina-Regular.ttf */; };
-		F9FCC4E4BFFD49D881AA8FCB /* BalooChettan-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17B45CB92F144909925E6ACE /* BalooChettan-Regular.ttf */; };
-		AE1F58D807D441858A08D156 /* BalooDa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 293E068B23404C0F951FC060 /* BalooDa-Regular.ttf */; };
-		EC977DE8728C4334A1353268 /* BalooPaaji-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00BF0A807BCD45C4B55611F6 /* BalooPaaji-Regular.ttf */; };
-		8228324F9C2141B7A08D4B08 /* BalooTamma-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C57950F36147A9A1FBE93A /* BalooTamma-Regular.ttf */; };
 		6A3EB4EF19FA4329AECB44FB /* BalooTammudu-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3AC1089517894B90851665B6 /* BalooTammudu-Regular.ttf */; };
 		765386D11F134FEEB8E23A9E /* BalooThambi-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20897D3A998E40F9AE18DB6E /* BalooThambi-Regular.ttf */; };
+		7699B88040F8A987B510C191 /* libPods-myapp4-myapp4Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-myapp4-myapp4Tests.a */; };
+		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8228324F9C2141B7A08D4B08 /* BalooTamma-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16C57950F36147A9A1FBE93A /* BalooTamma-Regular.ttf */; };
+		95A005E116B44150AF04BDB0 /* BalooBhai-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 893C6ABFD9BE4A36835AF571 /* BalooBhai-Regular.ttf */; };
+		999EAF6911954C9DB7D7B53E /* BalooBhaijaan-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37B61DE6DCD14137819322AD /* BalooBhaijaan-Regular.ttf */; };
+		AE1F58D807D441858A08D156 /* BalooDa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 293E068B23404C0F951FC060 /* BalooDa-Regular.ttf */; };
+		B63E151802944E24A7D80021 /* Baloo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3C5644AAA3E420B81EA3E4B /* Baloo.ttf */; };
+		DBA4E31DF9CB487B95B6982B /* BalooBhaina-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1E955F1ACB984D659D0AF820 /* BalooBhaina-Regular.ttf */; };
+		E55B4338B45C47D999D9E6C5 /* Baloo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC563E2F3DAD45E99472BD84 /* Baloo-Regular.ttf */; };
+		EC977DE8728C4334A1353268 /* BalooPaaji-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00BF0A807BCD45C4B55611F6 /* BalooPaaji-Regular.ttf */; };
+		F9FCC4E4BFFD49D881AA8FCB /* BalooChettan-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17B45CB92F144909925E6ACE /* BalooChettan-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00BF0A807BCD45C4B55611F6 /* BalooPaaji-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "BalooPaaji-Regular.ttf"; path = "../app/assets/fonts/BalooPaaji-Regular.ttf"; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* myapp4Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = myapp4Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* myapp4Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = myapp4Tests.m; sourceTree = "<group>"; };
@@ -48,26 +49,25 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = myapp4/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = myapp4/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = myapp4/main.m; sourceTree = "<group>"; };
+		16C57950F36147A9A1FBE93A /* BalooTamma-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "BalooTamma-Regular.ttf"; path = "../app/assets/fonts/BalooTamma-Regular.ttf"; sourceTree = "<group>"; };
+		17B45CB92F144909925E6ACE /* BalooChettan-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "BalooChettan-Regular.ttf"; path = "../app/assets/fonts/BalooChettan-Regular.ttf"; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-myapp4-myapp4Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myapp4-myapp4Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E955F1ACB984D659D0AF820 /* BalooBhaina-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "BalooBhaina-Regular.ttf"; path = "../app/assets/fonts/BalooBhaina-Regular.ttf"; sourceTree = "<group>"; };
+		20897D3A998E40F9AE18DB6E /* BalooThambi-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "BalooThambi-Regular.ttf"; path = "../app/assets/fonts/BalooThambi-Regular.ttf"; sourceTree = "<group>"; };
+		293E068B23404C0F951FC060 /* BalooDa-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "BalooDa-Regular.ttf"; path = "../app/assets/fonts/BalooDa-Regular.ttf"; sourceTree = "<group>"; };
+		37B61DE6DCD14137819322AD /* BalooBhaijaan-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "BalooBhaijaan-Regular.ttf"; path = "../app/assets/fonts/BalooBhaijaan-Regular.ttf"; sourceTree = "<group>"; };
+		3AC1089517894B90851665B6 /* BalooTammudu-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "BalooTammudu-Regular.ttf"; path = "../app/assets/fonts/BalooTammudu-Regular.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-myapp4.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myapp4.debug.xcconfig"; path = "Target Support Files/Pods-myapp4/Pods-myapp4.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-myapp4.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myapp4.release.xcconfig"; path = "Target Support Files/Pods-myapp4/Pods-myapp4.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-myapp4-myapp4Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myapp4-myapp4Tests.debug.xcconfig"; path = "Target Support Files/Pods-myapp4-myapp4Tests/Pods-myapp4-myapp4Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-myapp4.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myapp4.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = myapp4/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		893C6ABFD9BE4A36835AF571 /* BalooBhai-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "BalooBhai-Regular.ttf"; path = "../app/assets/fonts/BalooBhai-Regular.ttf"; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-myapp4-myapp4Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myapp4-myapp4Tests.release.xcconfig"; path = "Target Support Files/Pods-myapp4-myapp4Tests/Pods-myapp4-myapp4Tests.release.xcconfig"; sourceTree = "<group>"; };
+		B3C5644AAA3E420B81EA3E4B /* Baloo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Baloo.ttf; path = ../app/assets/fonts/Baloo.ttf; sourceTree = "<group>"; };
+		EC563E2F3DAD45E99472BD84 /* Baloo-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Baloo-Regular.ttf"; path = "../app/assets/fonts/Baloo-Regular.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		B3C5644AAA3E420B81EA3E4B /* Baloo.ttf */ = {isa = PBXFileReference; name = "Baloo.ttf"; path = "../app/assets/fonts/Baloo.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		FC56265DD84B4AEFB173C583 /* Bangers-Regular.ttf */ = {isa = PBXFileReference; name = "Bangers-Regular.ttf"; path = "../app/assets/fonts/Bangers-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		EC563E2F3DAD45E99472BD84 /* Baloo-Regular.ttf */ = {isa = PBXFileReference; name = "Baloo-Regular.ttf"; path = "../app/assets/fonts/Baloo-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		893C6ABFD9BE4A36835AF571 /* BalooBhai-Regular.ttf */ = {isa = PBXFileReference; name = "BalooBhai-Regular.ttf"; path = "../app/assets/fonts/BalooBhai-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		37B61DE6DCD14137819322AD /* BalooBhaijaan-Regular.ttf */ = {isa = PBXFileReference; name = "BalooBhaijaan-Regular.ttf"; path = "../app/assets/fonts/BalooBhaijaan-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		1E955F1ACB984D659D0AF820 /* BalooBhaina-Regular.ttf */ = {isa = PBXFileReference; name = "BalooBhaina-Regular.ttf"; path = "../app/assets/fonts/BalooBhaina-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		17B45CB92F144909925E6ACE /* BalooChettan-Regular.ttf */ = {isa = PBXFileReference; name = "BalooChettan-Regular.ttf"; path = "../app/assets/fonts/BalooChettan-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		293E068B23404C0F951FC060 /* BalooDa-Regular.ttf */ = {isa = PBXFileReference; name = "BalooDa-Regular.ttf"; path = "../app/assets/fonts/BalooDa-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		00BF0A807BCD45C4B55611F6 /* BalooPaaji-Regular.ttf */ = {isa = PBXFileReference; name = "BalooPaaji-Regular.ttf"; path = "../app/assets/fonts/BalooPaaji-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		16C57950F36147A9A1FBE93A /* BalooTamma-Regular.ttf */ = {isa = PBXFileReference; name = "BalooTamma-Regular.ttf"; path = "../app/assets/fonts/BalooTamma-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		3AC1089517894B90851665B6 /* BalooTammudu-Regular.ttf */ = {isa = PBXFileReference; name = "BalooTammudu-Regular.ttf"; path = "../app/assets/fonts/BalooTammudu-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		20897D3A998E40F9AE18DB6E /* BalooThambi-Regular.ttf */ = {isa = PBXFileReference; name = "BalooThambi-Regular.ttf"; path = "../app/assets/fonts/BalooThambi-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FC56265DD84B4AEFB173C583 /* Bangers-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Bangers-Regular.ttf"; path = "../app/assets/fonts/Bangers-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,7 +174,7 @@
 			sourceTree = "<group>";
 		};
 		F5E78DF1E31F48F4AAAECE21 /* Resources */ = {
-			isa = "PBXGroup";
+			isa = PBXGroup;
 			children = (
 				B3C5644AAA3E420B81EA3E4B /* Baloo.ttf */,
 				FC56265DD84B4AEFB173C583 /* Bangers-Regular.ttf */,
@@ -190,8 +190,8 @@
 				20897D3A998E40F9AE18DB6E /* BalooThambi-Regular.ttf */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
 			path = "";
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 

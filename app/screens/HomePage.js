@@ -1,6 +1,7 @@
 import { Text, StyleSheet, View, Image, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
 import React, { Component } from 'react'
 import color from '../color'
+import Donut from '../widgets/Donut'
 
 export default class HomePage extends Component {
     render() {
@@ -49,6 +50,9 @@ export default class HomePage extends Component {
                     <Image source={require('../assets/league.png')} style={styles.league} />
                 </TouchableWithoutFeedback>
                 <Text style={styles.league_txt}>LEAGUE</Text>
+                <View style={styles.donut}>
+                    <Donut />
+                </View>
             </View>
         )
     }
@@ -130,5 +134,12 @@ const styles = StyleSheet.create({
         fontSize: 14,
         width: 36,
         height: 23
+    },
+    donut: {
+        position: 'absolute',
+        left: 160,
+        top: 100,
+        width: 235,
+        height: 235
     },
 })
