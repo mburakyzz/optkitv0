@@ -1,0 +1,53 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "app/assets/fonts/Baloo-Regular.ttf",
+      "sha1": "95576f01904f5cd68c341c9594bf4cbccaaea180"
+    },
+    {
+      "path": "app/assets/fonts/Baloo.ttf",
+      "sha1": "f01dad4692e01e12dace4c17a916483732eabcbd"
+    },
+    {
+      "path": "app/assets/fonts/BalooBhai-Regular.ttf",
+      "sha1": "e597f1545e61643153894c74baffff1a4283df59"
+    },
+    {
+      "path": "app/assets/fonts/BalooBhaijaan-Regular.ttf",
+      "sha1": "851feea2f15694f8ead81c4bfca7bc9e6e87d565"
+    },
+    {
+      "path": "app/assets/fonts/BalooBhaina-Regular.ttf",
+      "sha1": "28fc7b6cc918e696aa81241746ee6ba05d42655d"
+    },
+    {
+      "path": "app/assets/fonts/BalooChettan-Regular.ttf",
+      "sha1": "8c19bd80ae6c7ccf84268be5f90a74a58ef1aa8a"
+    },
+    {
+      "path": "app/assets/fonts/BalooDa-Regular.ttf",
+      "sha1": "e0965660e068d864070bd9c1f417dbd0a5761141"
+    },
+    {
+      "path": "app/assets/fonts/BalooPaaji-Regular.ttf",
+      "sha1": "d1965b810fd6805895ecf2f48feb7f87a961b319"
+    },
+    {
+      "path": "app/assets/fonts/BalooTamma-Regular.ttf",
+      "sha1": "59f77f74f7fcf975c1f60b30072f702386938768"
+    },
+    {
+      "path": "app/assets/fonts/BalooTammudu-Regular.ttf",
+      "sha1": "35ab9b48791f7f07a821a1ac9c6243129e18901a"
+    },
+    {
+      "path": "app/assets/fonts/BalooThambi-Regular.ttf",
+      "sha1": "393a5474a2570ec39c2196d7b4bd7e46dc04bf29"
+    },
+    {
+      "path": "app/assets/fonts/Bangers-Regular.ttf",
+      "sha1": "9c81590199c778e14e4a7b0e9a7543288779a7ba"
+    }
+  ]
+}

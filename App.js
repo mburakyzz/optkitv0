@@ -1,12 +1,14 @@
 import { Text, StyleSheet, View } from 'react-native'
 import React, { Component } from 'react'
 import CircleSli from './app/widgets/CircleSlider'
+import HomePage from './app/screens/HomePage'
+import color from './app/color'
 
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <CircleSli />
+        <HomePage />
       </View>
     )
   }
@@ -14,8 +16,7 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    bottom: '-10%'
+    backgroundColor: color.lightBlue,
+    flex: 1
   }
 })
