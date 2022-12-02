@@ -3,6 +3,11 @@ import React, { Component } from 'react'
 import color from '../color'
 import Donut from '../widgets/Donut'
 
+// DONUT DATA
+const data = [{ value: 10 }, { value: 80 }, { value: 90 }, { value: 70 }]
+//
+
+
 export default class HomePage extends Component {
     render() {
         return (
@@ -51,7 +56,11 @@ export default class HomePage extends Component {
                 </TouchableWithoutFeedback>
                 <Text style={styles.league_txt}>LEAGUE</Text>
                 <View style={styles.donut}>
-                    <Donut />
+                    <Donut data={data} />
+                    <Text style={styles.donut_txt}>$ XXX.XX</Text>
+                </View>
+                <View style={styles.asset_list}>
+
                 </View>
             </View>
         )
@@ -140,6 +149,24 @@ const styles = StyleSheet.create({
         left: 160,
         top: 100,
         width: 235,
-        height: 235
+        height: 235,
+    },
+    donut_txt: {
+        alignSelf: 'center',
+        textAlign: 'center',
+        top: -162.5,
+        fontSize: 30,
+        fontFamily: 'Baloo-Regular',
+        color: color.honey
+
+    },
+    asset_list: {
+        position: 'absolute',
+        left: 422,
+        top: 100,
+        width: 300,
+        height: 235,
+        borderColor: color.honey,
+        borderWidth: 1
     },
 })
