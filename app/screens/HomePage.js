@@ -25,6 +25,23 @@ export default class HomePage extends Component {
                         <Text style={styles.cup_txt}>133</Text>
                     </View>
                 </View>
+                <View style={styles.status_container}>
+                    <View>
+                        <Image source={require('../assets/holder_dollar.png')} />
+                        <Image source={require('../assets/dollar.png')} style={styles.status_item} />
+                        <Text style={styles.status_txt}>Sa</Text>
+                    </View>
+                    <View>
+                        <Image source={require('../assets/holder_bullbear.png')} />
+                        <Image source={require('../assets/bull.png')} style={styles.status_item} />
+                        <Text style={styles.status_txt}>Saa</Text>
+                    </View>
+                    <View>
+                        <Image source={require('../assets/holder_bullbear.png')} />
+                        <Image source={require('../assets/bear.png')} style={styles.status_item} />
+                        <Text style={styles.status_txt}>Sa</Text>
+                    </View>
+                </View>
                 <Image source={require('../assets/holder_cup.png')} style={styles.holder_cup} />
                 <Image source={require('../assets/holder_chest.png')} style={styles.holder_chest} />
                 <Image source={require('../assets/holder_return.png')} style={styles.holder_return} />
@@ -92,5 +109,26 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontFamily: 'Baloo-Regular',
         color: color.mauve
-    }
+    },
+    status_container: {
+        width: 183,
+        height: 73,
+        position: 'absolute',
+        top: '0%',
+        right: 15,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly'
+    },
+    status_item: {
+        top: '-100%',
+        left: -7
+    },
+    status_txt: {
+        top: -73,
+        textAlign: 'center',
+        fontFamily: 'Baloo-Regular',
+        fontSize: 14,
+        width: 36,
+        height: 23
+    },
 })
