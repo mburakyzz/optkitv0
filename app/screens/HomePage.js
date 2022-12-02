@@ -34,7 +34,7 @@ export default class HomePage extends Component {
                     <View>
                         <Image source={require('../assets/holder_bullbear.png')} />
                         <Image source={require('../assets/bull.png')} style={styles.status_item} />
-                        <Text style={styles.status_txt}>Saa</Text>
+                        <Text style={styles.status_txt}>Saas</Text>
                     </View>
                     <View>
                         <Image source={require('../assets/holder_bullbear.png')} />
