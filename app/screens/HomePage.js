@@ -1,15 +1,18 @@
-import { Text, StyleSheet, View, Image, TouchableOpacity, TouchableWithoutFeedback, Dimensions } from 'react-native'
-import React, { Component } from 'react'
+import { Text, StyleSheet, View, Image, TouchableOpacity, TouchableWithoutFeedback, Dimensions, FlatList } from 'react-native'
+import React, { Component, useState } from 'react'
 import color from '../color'
 import Donut from '../widgets/Donut'
+import account_db from '../database/account'
+import Binance from '../database/binance'
+import CircleSli from '../widgets/CircleSlider'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-
-// DONUT DATA
-const data = [{ value: 10 }, { value: 80 }, { value: 90 }, { value: 70 }]
-//
-
+return_t = account_db('terrarossa').return_t
+values = account_db('terrarossa').values
+tickers = account_db('terrarossa').tickers
+wealth = account_db('terrarossa').wealth
+data = [{ value: 24 }, { value: 24 }, { value: 24 }, { value: 23 }]
 
 export default class HomePage extends Component {
     render() {
@@ -51,9 +54,21 @@ export default class HomePage extends Component {
                         <Text style={styles.status_txt}>Sa</Text>
                     </View>
                 </View>
-                <Image source={require('../assets/holder_cup.png')} style={styles.holder_cup} />
-                <Image source={require('../assets/holder_chest.png')} style={styles.holder_chest} />
-                <Image source={require('../assets/holder_return.png')} style={styles.holder_return} />
+                <View style={styles.holder_cup}>
+                    <Image source={require('../assets/holder_cup.png')} />
+                    <Image source={require('../assets/bronze_big.png')} style={styles.holded_item} />
+                    <Text style={[styles.holded_txt, { color: 'black' }]}> 1234.</Text>
+                </View>
+                <View style={styles.holder_chest}>
+                    <Image source={require('../assets/holder_chest.png')} />
+                    <Image source={require('../assets/chest.png')} style={styles.holded_item} />
+                    <Text style={[styles.holded_txt, { color: color.darkBlue }]}>{'$' + wealth}</Text>
+                </View>
+                <View style={styles.holder_return}>
+                    <Image source={require('../assets/holder_return.png')} />
+                    <Image source={require('../assets/return.png')} style={styles.holded_item} />
+                    <Text style={[styles.holded_txt, [account_db.return_t > 0 ? { color: color.green } : { color: color.red }]]}> {account_db.return_t + '%'}</Text>
+                </View>
                 <TouchableWithoutFeedback onPress={() => { console.log('league') }}>
                     <Image source={require('../assets/league.png')} style={styles.league} />
                 </TouchableWithoutFeedback>
@@ -63,14 +78,14 @@ export default class HomePage extends Component {
                 </TouchableWithoutFeedback>
                 <Text style={styles.market_txt}>MARKET</Text>
                 <View style={styles.donut}>
-                    <Donut data={data} />
+                    <CircleSli></CircleSli>
                     <Text style={styles.donut_txt}>$ XXX.XX</Text>
                 </View>
                 <Text style={styles.account}>TERRAROSSA</Text>
                 <View style={styles.asset_list}>
-
+                    <Binance></Binance>
                 </View>
-            </View>
+            </View >
         )
     }
 }
@@ -115,7 +130,21 @@ const styles = StyleSheet.create({
         position: 'absolute',
         alignSelf: 'baseline',
         width: 200 * windowWidth / 844,
-        height: 29 * windowWidth / 844
+        height: 29 * windowWidth / 844,
+    },
+    holded_item: {
+        position: 'absolute',
+        top: '-50%',
+        left: '2.5%'
+    },
+    holded_txt: {
+        width: 85 * windowWidth / 844,
+        height: 29 * windowWidth / 844,
+        top: '-100%',
+        left: '43%',
+        textAlign: 'center',
+        fontFamily: 'Baloo-Regular',
+        fontSize: 21 * windowWidth / 844
     },
     holder_chest: {
         top: '40%',
