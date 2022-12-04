@@ -1,31 +1,64 @@
-import { Text, StyleSheet, View } from 'react-native'
-import React, { Component } from 'react'
-import CircleSlider from 'react-native-circle-slider'
+import React, { Component } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 
-export default class CircleSli extends Component {
+import CircularSlider from 'rn-circular-slider'
+
+console.disableYellowBox = true
+
+export default class App extends Component {
+    state = {
+        value: 50
+    }
+
     render() {
+        const { value } = this.state
         return (
             <View style={styles.container}>
-                <CircleSlider
-                    dialRadius={100}
-                    dialWidth={15}
-                    btnRadius={20}
-                    meterColor={'#385f71'}
-                    fillColor={'#f0c782'}
-                    strokeWidth={10}
-                    strokeColor={'#fff8dc'}
-                    onValueChange={x => console.log(x)}
-                    value={90}
-                />
+                <CircularSlider
+                    step={1}
+                    min={0}
+                    max={100}
+                    value={value}
+                    backgroundTrackColor={'#b3e580'}
+                    onChange={value => this.setState({ value })}
+                    contentContainerStyle={styles.contentContainerStyle}
+                    strokeWidth={15}
+                    buttonBorderColor="#648495"
+                    buttonFillColor="#385f71"
+                    buttonStrokeWidth={15}
+                    openingRadian={Math.PI / 4}
+                    buttonRadius={20}
+                    linearGradient={[{ stop: '0%', color: '#8963ba' }, { stop: '100%', color: '#8963ba' }]}
+                >
+                    <Text style={styles.value}>{value + ' %'}</Text>
+                    <Text style={styles.ofcash}>OF CASH</Text>
+                </CircularSlider>
             </View>
-        )
+        );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#f0c782',
+        flex: 1,
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'center'
+        backgroundColor: '#f0c782',
+    },
+    contentContainerStyle: {
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    value: {
+        fontWeight: '500',
+        fontSize: 32,
+        color: '#385f71',
+        textAlign: 'center'
+    },
+    ofcash: {
+        fontWeight: '300',
+        fontSize: 20,
+        color: '#385f71',
+        textAlign: 'center'
     }
-})
+});

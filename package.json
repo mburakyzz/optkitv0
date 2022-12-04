@@ -16,7 +16,8 @@
     "react-native-circle-slider": "^2.9.0",
     "react-native-circular-slider": "^1.0.1",
     "react-native-gifted-charts": "^1.2.42",
-    "react-native-svg": "^13.6.0"
+    "react-native-svg": "^13.6.0",
+    "rn-circular-slider": "^1.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
