@@ -1,4 +1,4 @@
-import { Text, StyleSheet, View ,Dimensions} from 'react-native'
+import { Text, StyleSheet, View, Dimensions } from 'react-native'
 import React, { Component } from 'react'
 import CircleSli from './app/widgets/CircleSlider'
 import HomePage from './app/screens/HomePage'

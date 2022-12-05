@@ -5,6 +5,7 @@ import Donut from '../widgets/Donut'
 import account_db from '../database/account'
 import Binance from '../database/binance'
 import CircleSli from '../widgets/CircleSlider'
+import marketScreen1 from './marketScreen1'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -73,7 +74,7 @@ export default class HomePage extends Component {
                     <Image source={require('../assets/league.png')} style={styles.league} />
                 </TouchableWithoutFeedback>
                 <Text style={styles.league_txt}>LEAGUE</Text>
-                <TouchableWithoutFeedback onPress={() => { console.log('market') }}>
+                <TouchableWithoutFeedback onPress={() => { }}>
                     <Image source={require('../assets/market.png')} style={styles.market} />
                 </TouchableWithoutFeedback>
                 <Text style={styles.market_txt}>MARKET</Text>
