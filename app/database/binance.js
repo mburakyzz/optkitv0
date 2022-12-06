@@ -44,8 +44,10 @@ const BinanceProvider = (props)=>{
             })
         }))
     },[tickersData])
+
+    getDues = (x)=>{console.log(x)}
     return(
-        <Binance.Provider value={{binanceData,tickers}}>
+        <Binance.Provider value={{binanceData,tickers,getDues}}>
             {props.children}
         </Binance.Provider>
     )

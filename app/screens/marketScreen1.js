@@ -5,7 +5,7 @@ import { Binance } from '../database/binance'
 
 
 const MarketScreen1 = ({market,updateMarket}) => {
-    const {binanceData,tickers} = useContext(Binance)
+    const {binanceData,tickers,getDues} = useContext(Binance)
 
     console.log(tickers)
     return (
@@ -26,7 +26,7 @@ const MarketScreen1 = ({market,updateMarket}) => {
                             keyExtractor={(i)=>i.id}
                             horizontal
                             renderItem={({item})=>(
-                                <TouchableOpacity style={styles.tickerButton}>
+                                <TouchableOpacity style={styles.tickerButton}onPress={()=>{getDues(item.symbol)}}>
                                     <Text style={styles.tickerTxt}>
                                         {item.symbol}  
                                     </Text>
