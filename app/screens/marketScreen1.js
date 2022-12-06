@@ -1,24 +1,30 @@
-import { StyleSheet, Text, View, Modal, TouchableWithoutFeedback, Image } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Modal, TouchableWithoutFeedback, Image, Button } from 'react-native'
+import React, { useContext, useState } from 'react'
 import color from '../color'
+import { FlatList } from 'react-native'
+import { Binance } from '../database/binance'
 
-const marketScreen1 = () => {
+
+const MarketScreen1 = ({market,updateMarket}) => {
+    const {binanceData,tickers} = useContext(Binance)
+    console.log(tickers)
     return (
         <View style={styles.modalView}>
             <Modal
-                visible={true}
-                animationType={'fade'}
+                visible={market}
+                animationType={'slide'}
                 transparent={true}
                 supportedOrientations={['landscape']}
                 style={styles.modalStyle}>
                 <View style={styles.modalContainer}>
-                    <TouchableWithoutFeedback onPress={() => { }}>
-                        <Image source={{
-                            uri: 'https://imageio.forbes.com/specials-images/imageserve/5babb7f1a7ea4342a948b79a/0x0.jpg?format=jpg&crop=2327,2329,x748,y1753,safe&height=416&width=416&fit=bounds',
-                            width: 150,
-                            height: 200,
-                        }} />
+                    <TouchableWithoutFeedback onPress={updateMarket}>
+                        <Image source={require('../assets/close.png')} style={styles.closeBtn}/>
                     </TouchableWithoutFeedback>
+                    <View style={styles.tickerContainer}>
+                        <FlatList
+                            
+                        />
+                    </View>
                 </View>
             </Modal>
         </View>
@@ -43,5 +49,21 @@ const styles = StyleSheet.create({
     },
     modalStyle: {
     },
+    closeBtn:{
+        position:'absolute',
+        width:35,
+        height:35,
+        top:0,
+        right:0
+    },
+    tickerContainer:{
+        width:600,
+        height:100,
+        borderWidth:5,
+        borderColor:color.darkBlue,
+        position:'absolute',
+        top:'10%',
+        left:'5%'
+    }
 });
-export default marketScreen1
+export default MarketScreen1
