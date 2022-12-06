@@ -9,10 +9,6 @@ import BinanceProvider from '../database/binance'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-return_t = account_db('terrarossa').return_t
-values = account_db('terrarossa').values
-tickers = account_db('terrarossa').tickers
-wealth = account_db('terrarossa').wealth
 data = [{ value: 24 }, { value: 24 }, { value: 24 }, { value: 23 }]
 
 
@@ -61,15 +57,10 @@ const HomePage = () =>  {
                 <Image source={require('../assets/bronze_big.png')} style={styles.holded_item} />
                 <Text style={[styles.holded_txt, { color: 'black' }]}> 1234.</Text>
             </View>
-            <View style={styles.holder_chest}>
-                <Image source={require('../assets/holder_chest.png')} />
-                <Image source={require('../assets/chest.png')} style={styles.holded_item} />
-                <Text style={[styles.holded_txt, { color: color.darkBlue }]}>{'$' + wealth}</Text>
-            </View>
             <View style={styles.holder_return}>
                 <Image source={require('../assets/holder_return.png')} />
                 <Image source={require('../assets/return.png')} style={styles.holded_item} />
-                <Text style={[styles.holded_txt, [account_db.return_t > 0 ? { color: color.green } : { color: color.red }]]}> {account_db.return_t + '%'}</Text>
+                <Text style={[styles.holded_txt, [12.32 > 0 ? { color: color.green } : { color: color.red }]]}> {12.32 + '%'}</Text>
             </View>
             <TouchableWithoutFeedback onPress={() => { console.log('league') }}>
                 <Image source={require('../assets/league.png')} style={styles.league} />
@@ -145,20 +136,13 @@ const styles = StyleSheet.create({
         width: 85 * windowWidth / 844,
         height: 29 * windowWidth / 844,
         top: '-100%',
-        left: '43%',
+        left: '40%',
         textAlign: 'center',
         fontFamily: 'Baloo-Regular',
-        fontSize: 21 * windowWidth / 844
-    },
-    holder_chest: {
-        top: '40%',
-        position: 'absolute',
-        alignSelf: 'baseline',
-        width: 150 * windowWidth / 844,
-        height: 29 * windowWidth / 844
+        fontSize: 21 * windowWidth / 844,
     },
     holder_return: {
-        top: '60%',
+        top: '40%',
         position: 'absolute',
         alignSelf: 'baseline',
         width: 150 * windowWidth / 844,
@@ -211,14 +195,16 @@ const styles = StyleSheet.create({
         left: 180 * windowWidth / 844,
         top: 100 * windowWidth / 844,
         width: windowWidth * 235 / 844,
-        height: windowWidth * 200 / 844,
-        alignItems:'center',
+        height: windowWidth * 235 / 844,
+        alignItems:'center'
     },
     donut_txt: {
-        alignSelf: 'center',
+        position:'absolute',
+        bottom:-105*windowWidth/844,
         textAlign: 'center',
-        bottom: 137.5 * windowWidth / 844,
-        fontSize: 25 * windowWidth / 844,
+        width:235*windowWidth/844,
+        height:235*windowWidth/844,
+        fontSize: 25,
         fontFamily: 'Baloo-Regular',
         color: color.honey
 
@@ -251,7 +237,7 @@ const styles = StyleSheet.create({
         left: 442 * windowWidth / 844,
         top: 100 * windowWidth / 844,
         width: 300 * windowWidth / 844,
-        height: 200 * windowWidth / 844,
+        height: 235 * windowWidth / 844,
         borderColor: color.honey,
         borderWidth: 1
     },

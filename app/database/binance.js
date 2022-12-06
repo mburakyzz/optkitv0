@@ -25,16 +25,25 @@ const BinanceProvider = (props)=>{
             max:i.filters[0].maxPrice}
         }))]
     },[rawData])
-
     // Tickers
-    const[tickers,setTickers] = useState([])
+    const[tickersData,setTickersData] = useState([])
+    const getTickers = ()=>{
+        for (i=0;i<binanceData.length;i++){
+            if (!tickersData.includes(binanceData[i].symbol)){
+                setTickersData([...tickersData,binanceData[i].symbol])
+            }
+        }
+    }
+    getTickers()
+    const [tickers,setTickers] = useState([])
     useEffect(()=>{
-        binanceData.map((i)=>{
-           if (!(tickers.includes(i.symbol))){
-            setTickers([...tickers,i.symbol])
-           };
-        })
-    },[binanceData])
+        setTickers(tickersData.map(i=>{
+            return({
+                id:tickersData.indexOf(i)+1,
+                symbol:i
+            })
+        }))
+    },[tickersData])
     return(
         <Binance.Provider value={{binanceData,tickers}}>
             {props.children}

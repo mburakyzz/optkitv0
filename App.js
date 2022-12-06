@@ -1,4 +1,4 @@
-import { Text, StyleSheet, View, Dimensions } from 'react-native'
+import { Text, StyleSheet, View, Dimensions ,StatusBar} from 'react-native'
 import React, { Component } from 'react'
 import CircleSli from './app/widgets/CircleSlider'
 import HomePage from './app/screens/HomePage'
@@ -9,9 +9,10 @@ const windowHeight = Dimensions.get('window').height;
 
 const App = () => {
   return (
-        <View style={styles.container}>
-          <HomePage />
-        </View>
+          <View style={styles.container}>
+            <StatusBar hidden/>
+            <HomePage />
+          </View>
   )
 }
 

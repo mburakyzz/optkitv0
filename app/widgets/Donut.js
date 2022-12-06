@@ -7,24 +7,18 @@ const windowHeight = Dimensions.get('window').height;
 
 function Donut({ data }) {
     return (
-        <View style={styles.container}>
+        <View style={{left:12.5*windowWidth/844}}>
             <PieChart
                 data={data}
                 donut
                 initialAngle={0}
-                radius={windowWidth * 200 / 844 / 2}
-                innerRadius={(windowWidth * 200 / 844 / 2) * 3 / 4}
+                radius={windowWidth * 235 / 844 / 2}
+                innerRadius={(windowWidth * 235 / 844 / 2) * 3 / 4}
                 innerCircleColor={color.lightBlue}
                 shadow
             />
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    container:{
-        left:17.5*windowWidth/844/2
-    }
-})
 
 export default Donut
