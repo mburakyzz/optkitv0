@@ -1,13 +1,14 @@
-import { StyleSheet, Text, View, Modal, TouchableWithoutFeedback, Image, FlatList, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Modal, TouchableWithoutFeedback, Image, FlatList, TouchableOpacity, Button } from 'react-native'
 import React, { useContext, useState ,useEffect} from 'react'
 import color from '../color'
 import { Binance } from '../database/binance'
+import strategies from '../database/strategies'
 
 
 const MarketScreen1 = ({market,updateMarket}) => {
-    const {binanceData,tickers,getDues} = useContext(Binance)
+    const {tickers,getDues,dues} = useContext(Binance)
+    const [selectedItems,setSelectedItems] = useState({ticker:'',due:'',str:''})
 
-    console.log(tickers)
     return (
         <View style={styles.modalView}>
             <Modal
@@ -26,7 +27,7 @@ const MarketScreen1 = ({market,updateMarket}) => {
                             keyExtractor={(i)=>i.id}
                             horizontal
                             renderItem={({item})=>(
-                                <TouchableOpacity style={styles.tickerButton}onPress={()=>{getDues(item.symbol)}}>
+                                <TouchableOpacity style={styles.tickerButton} onPress={()=>{[getDues(item.symbol),setSelectedItems({...selectedItems,ticker:item.symbol})]}}>
                                     <Text style={styles.tickerTxt}>
                                         {item.symbol}  
                                     </Text>
@@ -36,18 +37,31 @@ const MarketScreen1 = ({market,updateMarket}) => {
                     </View>
                     <View style={styles.dueContainer}>
                         <FlatList
-                            data={tickers}
+                            data={dues}
                             keyExtractor={(i)=>i.id}
                             horizontal
                             renderItem={({item})=>(
-                                <TouchableOpacity style={styles.dueButton}>
+                                <TouchableOpacity style={styles.dueButton} onPress={()=>{[console.log(item),setSelectedItems({...selectedItems,due:item})]}}>
                                     <Text style={styles.dueTxt}>
-                                        {item.symbol}  
+                                        {item}  
                                     </Text>
                                 </TouchableOpacity>
                             )}
                         />
                     </View>
+                    <View style={styles.strategyContainer}>
+                        <FlatList
+                            data={Object.keys(strategies)}
+                            keyExtractor={(i)=>Object.keys(strategies[i]).id}
+                            horizontal
+                            renderItem={({item})=>(
+                                <TouchableOpacity style={styles.strategyButton} onPress={()=>{[setSelectedItems({...selectedItems,str:item})]}}>
+                                    <Image source={(strategies[item].img)} style={styles.strategyButton}/>
+                                </TouchableOpacity>
+                            )}
+                        />
+                    </View>
+                    <TouchableOpacity style={{position:'absolute',right:0,bottom:0}} onPress={()=>{console.log(selectedItems)}}><Text>State Nedir?</Text></TouchableOpacity>
                 </View>
             </Modal>
         </View>
@@ -85,7 +99,7 @@ const styles = StyleSheet.create({
         borderWidth:5,
         borderColor:color.darkBlue,
         position:'absolute',
-        top:'10%',
+        top:'5%',
         left:'5%',
     },
     tickerButton:{
@@ -94,7 +108,7 @@ const styles = StyleSheet.create({
         height:80,
         alignSelf:'center',
         margin:10,
-        borderRadius:15
+        borderRadius:15,
     },
     tickerTxt:{
         width:80,
@@ -111,7 +125,7 @@ const styles = StyleSheet.create({
         borderWidth:5,
         borderColor:color.darkBlue,
         position:'absolute',
-        top:'42.5%',
+        top:'37.5%',
         left:'5%',
     },
     dueButton:{
@@ -123,6 +137,31 @@ const styles = StyleSheet.create({
         borderRadius:10
     },
     dueTxt:{
+        width:100,
+        height:50,
+        fontSize:18,
+        textAlign:'center',
+        textAlignVertical:'center',
+        fontWeight:'700',
+        color:color.honey
+    },
+    strategyContainer:{
+        width:600,
+        height:124,
+        borderWidth:5,
+        borderColor:color.darkBlue,
+        position:'absolute',
+        top:'62%',
+        left:'5%',
+    },
+    strategyButton:{
+        width:100,
+        height:100,
+        alignSelf:'center',
+        margin:5
+
+    },
+    strategyTxt:{
         width:100,
         height:50,
         fontSize:18,

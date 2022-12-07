@@ -8,12 +8,14 @@ import MarketScreen1 from './marketScreen1'
 import BinanceProvider from '../database/binance'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+import {Binance} from'../database/binance'
 
 data = [{ value: 24 }, { value: 24 }, { value: 24 }, { value: 23 }]
 
 
 const HomePage = () =>  {
     const [market,setMarket] = useState(false)
+    const {tickers} = useContext(Binance)
     return (
         <View style={styles.container}>
             <Image source={require('../assets/cups.png')} style={styles.cups} />
@@ -66,7 +68,7 @@ const HomePage = () =>  {
                 <Image source={require('../assets/league.png')} style={styles.league} />
             </TouchableWithoutFeedback>
             <Text style={styles.league_txt}>LEAGUE</Text>
-            <TouchableWithoutFeedback onPress={() =>{setMarket(!market)}}>
+            <TouchableWithoutFeedback onPress={() =>{[setMarket(!market)]}}>
                 <Image source={require('../assets/market.png')} style={styles.market} />
             </TouchableWithoutFeedback>
             <BinanceProvider>

@@ -45,9 +45,36 @@ const BinanceProvider = (props)=>{
         }))
     },[tickersData])
 
-    getDues = (x)=>{console.log(x)}
+    // DUE DATES
+    const[dues,setDues] = useState([])
+    const getDues = (x)=>{
+        const arr = []
+        binanceData.forEach((i)=>{
+            if (i.symbol==x){
+                if(!arr.includes(i.due)){
+                   arr.push(i.due)
+                }
+            }
+        })
+        setDues(arr)
+        }
+    // SELECTED ITEMS
+    const[selectedAssets,setSelectedAssets] = useState([])
+    const getAssets = (x,y)=>{
+        const arr = []
+        binanceData.forEach((i)=>{
+            if (i.symbol==x){
+                if(!arr.includes(i.due)){
+                   arr.push(i.due)
+                }
+            }
+        })
+        setSelectedAssets(arr)
+        }
+    
+    
     return(
-        <Binance.Provider value={{binanceData,tickers,getDues}}>
+        <Binance.Provider value={{binanceData,tickers,getDues,dues}}>
             {props.children}
         </Binance.Provider>
     )
