@@ -1,4 +1,4 @@
-import { View, Text, Dimensions } from 'react-native'
+import { View, Text, Dimensions,StyleSheet } from 'react-native'
 import React from 'react'
 import { PieChart } from 'react-native-gifted-charts'
 import color from '../color'
@@ -7,7 +7,7 @@ const windowHeight = Dimensions.get('window').height;
 
 function Donut({ data }) {
     return (
-        <View>
+        <View style={{left:12.5*windowWidth/844}}>
             <PieChart
                 data={data}
                 donut

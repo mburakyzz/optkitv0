@@ -1,94 +1,90 @@
 import { Text, StyleSheet, View, Image, TouchableOpacity, TouchableWithoutFeedback, Dimensions, FlatList } from 'react-native'
-import React, { Component, useState } from 'react'
+import React, { Component, useContext, useState } from 'react'
 import color from '../color'
 import Donut from '../widgets/Donut'
 import account_db from '../database/account'
-import Binance from '../database/binance'
 import CircleSli from '../widgets/CircleSlider'
-import marketScreen1 from './marketScreen1'
+import MarketScreen1 from './marketScreen1'
+import BinanceProvider from '../database/binance'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+import {Binance} from'../database/binance'
 
-return_t = account_db('terrarossa').return_t
-values = account_db('terrarossa').values
-tickers = account_db('terrarossa').tickers
-wealth = account_db('terrarossa').wealth
 data = [{ value: 24 }, { value: 24 }, { value: 24 }, { value: 23 }]
 
-export default class HomePage extends Component {
-    render() {
-        return (
-            <View style={styles.container}>
-                <Image source={require('../assets/cups.png')} style={styles.cups} />
-                <View style={styles.cups_container}>
-                    <View style={styles.cup_container}>
-                        <Image source={require('../assets/crystal_small.png')} style={styles.cup_item} />
-                        <Text style={styles.cup_txt}>133</Text>
-                    </View>
-                    <View style={styles.cup_container}>
-                        <Image source={require('../assets/gold_small.png')} style={styles.cup_item} />
-                        <Text style={styles.cup_txt}>133</Text>
-                    </View>
-                    <View style={styles.cup_container}>
-                        <Image source={require('../assets/silver_small.png')} style={styles.cup_item} />
-                        <Text style={styles.cup_txt}>23</Text>
-                    </View>
-                    <View style={styles.cup_container}>
-                        <Image source={require('../assets/bronze_small.png')} style={styles.cup_item} />
-                        <Text style={styles.cup_txt}>133</Text>
-                    </View>
+
+const HomePage = () =>  {
+    const [market,setMarket] = useState(false)
+    const {tickers} = useContext(Binance)
+    return (
+        <View style={styles.container}>
+            <Image source={require('../assets/cups.png')} style={styles.cups} />
+            <View style={styles.cups_container}>
+                <View style={styles.cup_container}>
+                    <Image source={require('../assets/crystal_small.png')} style={styles.cup_item} />
+                    <Text style={styles.cup_txt}>133</Text>
                 </View>
-                <View style={styles.status_container}>
-                    <View>
-                        <Image source={require('../assets/holder_dollar.png')} style={styles.status_holder} />
-                        <Image source={require('../assets/dollar.png')} style={styles.status_item} />
-                        <Text style={styles.status_txt}>Sa</Text>
-                    </View>
-                    <View>
-                        <Image source={require('../assets/holder_bullbear.png')} style={styles.status_holder} />
-                        <Image source={require('../assets/bull.png')} style={styles.status_item} />
-                        <Text style={styles.status_txt}>Saas</Text>
-                    </View>
-                    <View>
-                        <Image source={require('../assets/holder_bullbear.png')} style={styles.status_holder} />
-                        <Image source={require('../assets/bear.png')} style={styles.status_item} />
-                        <Text style={styles.status_txt}>Sa</Text>
-                    </View>
+                <View style={styles.cup_container}>
+                    <Image source={require('../assets/gold_small.png')} style={styles.cup_item} />
+                    <Text style={styles.cup_txt}>133</Text>
                 </View>
-                <View style={styles.holder_cup}>
-                    <Image source={require('../assets/holder_cup.png')} />
-                    <Image source={require('../assets/bronze_big.png')} style={styles.holded_item} />
-                    <Text style={[styles.holded_txt, { color: 'black' }]}> 1234.</Text>
+                <View style={styles.cup_container}>
+                    <Image source={require('../assets/silver_small.png')} style={styles.cup_item} />
+                    <Text style={styles.cup_txt}>23</Text>
                 </View>
-                <View style={styles.holder_chest}>
-                    <Image source={require('../assets/holder_chest.png')} />
-                    <Image source={require('../assets/chest.png')} style={styles.holded_item} />
-                    <Text style={[styles.holded_txt, { color: color.darkBlue }]}>{'$' + wealth}</Text>
+                <View style={styles.cup_container}>
+                    <Image source={require('../assets/bronze_small.png')} style={styles.cup_item} />
+                    <Text style={styles.cup_txt}>133</Text>
                 </View>
-                <View style={styles.holder_return}>
-                    <Image source={require('../assets/holder_return.png')} />
-                    <Image source={require('../assets/return.png')} style={styles.holded_item} />
-                    <Text style={[styles.holded_txt, [account_db.return_t > 0 ? { color: color.green } : { color: color.red }]]}> {account_db.return_t + '%'}</Text>
+            </View>
+            <View style={styles.status_container}>
+                <View>
+                    <Image source={require('../assets/holder_dollar.png')} style={styles.status_holder} />
+                    <Image source={require('../assets/dollar.png')} style={styles.status_item} />
+                    <Text style={styles.status_txt}>Sa</Text>
                 </View>
-                <TouchableWithoutFeedback onPress={() => { console.log('league') }}>
-                    <Image source={require('../assets/league.png')} style={styles.league} />
-                </TouchableWithoutFeedback>
-                <Text style={styles.league_txt}>LEAGUE</Text>
-                <TouchableWithoutFeedback onPress={() => { }}>
-                    <Image source={require('../assets/market.png')} style={styles.market} />
-                </TouchableWithoutFeedback>
-                <Text style={styles.market_txt}>MARKET</Text>
-                <View style={styles.donut}>
-                    <CircleSli></CircleSli>
-                    <Text style={styles.donut_txt}>$ XXX.XX</Text>
+                <View>
+                    <Image source={require('../assets/holder_bullbear.png')} style={styles.status_holder} />
+                    <Image source={require('../assets/bull.png')} style={styles.status_item} />
+                    <Text style={styles.status_txt}>Saas</Text>
                 </View>
-                <Text style={styles.account}>TERRAROSSA</Text>
-                <View style={styles.asset_list}>
-                    <Binance></Binance>
+                <View>
+                    <Image source={require('../assets/holder_bullbear.png')} style={styles.status_holder} />
+                    <Image source={require('../assets/bear.png')} style={styles.status_item} />
+                    <Text style={styles.status_txt}>Sa</Text>
                 </View>
-            </View >
-        )
-    }
+            </View>
+            <View style={styles.holder_cup}>
+                <Image source={require('../assets/holder_cup.png')} />
+                <Image source={require('../assets/bronze_big.png')} style={styles.holded_item} />
+                <Text style={[styles.holded_txt, { color: 'black' }]}> 1234.</Text>
+            </View>
+            <View style={styles.holder_return}>
+                <Image source={require('../assets/holder_return.png')} />
+                <Image source={require('../assets/return.png')} style={styles.holded_item} />
+                <Text style={[styles.holded_txt, [12.32 > 0 ? { color: color.green } : { color: color.red }]]}> {12.32 + '%'}</Text>
+            </View>
+            <TouchableWithoutFeedback onPress={() => { console.log('league') }}>
+                <Image source={require('../assets/league.png')} style={styles.league} />
+            </TouchableWithoutFeedback>
+            <Text style={styles.league_txt}>LEAGUE</Text>
+            <TouchableWithoutFeedback onPress={() =>{[setMarket(!market)]}}>
+                <Image source={require('../assets/market.png')} style={styles.market} />
+            </TouchableWithoutFeedback>
+            <BinanceProvider>
+                <MarketScreen1 market={market} updateMarket={() =>{setMarket(!market)}}></MarketScreen1>
+            </BinanceProvider>
+            <Text style={styles.market_txt}>MARKET</Text>
+            <View style={styles.donut}>
+                <Donut data={data}></Donut>
+                <Text style={styles.donut_txt}>$ XXX.XX</Text>
+            </View>
+            <Text style={styles.account}>TERRAROSSA</Text>
+            <View style={styles.asset_list}>
+            </View>
+        </View >
+    )
+    
 }
 
 const styles = StyleSheet.create({
@@ -142,20 +138,13 @@ const styles = StyleSheet.create({
         width: 85 * windowWidth / 844,
         height: 29 * windowWidth / 844,
         top: '-100%',
-        left: '43%',
+        left: '40%',
         textAlign: 'center',
         fontFamily: 'Baloo-Regular',
-        fontSize: 21 * windowWidth / 844
-    },
-    holder_chest: {
-        top: '40%',
-        position: 'absolute',
-        alignSelf: 'baseline',
-        width: 150 * windowWidth / 844,
-        height: 29 * windowWidth / 844
+        fontSize: 21 * windowWidth / 844,
     },
     holder_return: {
-        top: '60%',
+        top: '40%',
         position: 'absolute',
         alignSelf: 'baseline',
         width: 150 * windowWidth / 844,
@@ -209,12 +198,15 @@ const styles = StyleSheet.create({
         top: 100 * windowWidth / 844,
         width: windowWidth * 235 / 844,
         height: windowWidth * 235 / 844,
+        alignItems:'center'
     },
     donut_txt: {
-        alignSelf: 'center',
+        position:'absolute',
+        bottom:-105*windowWidth/844,
         textAlign: 'center',
-        top: -162.5 * windowWidth / 844,
-        fontSize: 30 * windowWidth / 844,
+        width:235*windowWidth/844,
+        height:235*windowWidth/844,
+        fontSize: 25,
         fontFamily: 'Baloo-Regular',
         color: color.honey
 
@@ -252,3 +244,5 @@ const styles = StyleSheet.create({
         borderWidth: 1
     },
 })
+
+export default HomePage
