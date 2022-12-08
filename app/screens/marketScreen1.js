@@ -10,7 +10,6 @@ import strategies from '../database/strategies'
 const MarketScreen1 = ({ market, updateMarket }) => {
     const { tickers, getDues, dues } = useContext(Binance)
     const [selectedItems, setSelectedItems] = useState({ ticker: '', due: '', str: '' })
-
     return (
         <View style={styles.modalView}>
             <Modal
@@ -40,10 +39,10 @@ const MarketScreen1 = ({ market, updateMarket }) => {
                     <View style={styles.dueContainer}>
                         <FlatList
                             data={dues}
-                            keyExtractor={(i) => i.id}
+                            key={(i) => {dues.indexOf(i)+1}}
                             horizontal
                             renderItem={({ item }) => (
-                                <TouchableOpacity style={styles.dueButton} onPress={() => { [console.log(item), setSelectedItems({ ...selectedItems, due: item })] }}>
+                                <TouchableOpacity style={styles.dueButton} onPress={() => { [setSelectedItems({ ...selectedItems, due: item })] }}>
                                     <Text style={styles.dueTxt}>
                                         {item}
                                     </Text>

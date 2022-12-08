@@ -56,7 +56,9 @@ const BinanceProvider = (props)=>{
                 }
             }
         })
-        setDues(arr)
+        setDues(arr.map(i=>{
+            return(i)
+        }))
         }
     // SELECTED ITEMS
     const[selectedAssets,setSelectedAssets] = useState([])
