@@ -1,6 +1,6 @@
 const strategies = [
-    { id: 1, name: 'longCall', img: require('../assets/longCall.png'), options: [{ id: 1, mony: 0, type: 'C', pos: 'L' }] },
-    { id: 2, name: 'shortPut', img: require('../assets/shortPut.png'), options: [{ id: 1, mony: 0, type: 'S', pos: 'P' }] },
+    { id: 1, name: 'longCall', img: require('../assets/longCall.png'), options: [{ id: 1, mony: [1,2,3,4,5], type: 'C', pos: 'L' }] },
+    { id: 2, name: 'shortPut', img: require('../assets/shortPut.png'), options: [{ id: 1, mony: [1,2,3,4,5], type: 'S', pos: 'P' }] },
     { id: 3, name: 'bullCallSpread', img: require('../assets/bullCallSpread.png'), options: [{ id: 1, mony: [1, 2], type: 'C', pos: 'L' }, { id: 2, mony: [4, 5], type: 'C', pos: 'S' }] },
     { id: 4, name: 'callRatioBackSpread', img: require('../assets/callRatioBackSpread.png'), options: [{ id: 1, mony: [3, 4, 5], type: 'C', pos: 'L' }, { id: 2, mony: [3, 4, 5], type: 'C', pos: 'L' }, { id: 3, mony: [1, 2], type: 'C', pos: 'S' }] },
     { id: 5, name: 'bearCallLadder', img: require('../assets/bearCallLadder.png'), options: [{ id: 1, mony: [1, 2], type: 'C', pos: 'S' }, { id: 2, mony: [3], type: 'C', pos: 'L' }, { id: 3, mony: [4, 5], type: 'C', pos: 'L' }] },

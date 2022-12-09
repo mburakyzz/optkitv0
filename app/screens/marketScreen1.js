@@ -1,20 +1,22 @@
-import { StyleSheet, Text, View, Modal, TouchableWithoutFeedback, Image, FlatList, TouchableOpacity, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Modal, TouchableWithoutFeedback, Image, FlatList, TouchableOpacity, Dimensions, Pressable } from 'react-native'
 import React, { useContext, useState, useEffect } from 'react'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import color from '../color'
 import { Binance } from '../database/binance'
 import strategies from '../database/strategies'
-
+import MarketScreen2 from './marketScreen2'
+import BinanceProvider from '../database/binance'
 
 const MarketScreen1 = ({ market, updateMarket }) => {
-    const { tickers, getDues, dues } = useContext(Binance)
+    const [market2, setMarket2] = useState(false)
+    const { tickers, getDues, dues,options,getOptions } = useContext(Binance)
     const [selectedItems, setSelectedItems] = useState({ ticker: '', due: '', str: '' })
     return (
         <View style={styles.modalView}>
             <Modal
                 visible={market}
-                animationType={'slide'}
+                animationType={'fade'}
                 transparent={true}
                 supportedOrientations={['landscape']}
                 style={styles.modalStyle}>
@@ -63,8 +65,17 @@ const MarketScreen1 = ({ market, updateMarket }) => {
                         />
                     </View>
                     <TouchableOpacity style={{ position: 'absolute', right: 0, bottom: 0 }} onPress={() => { console.log(selectedItems) }}><Text>State Nedir?</Text></TouchableOpacity>
+                    <View style={styles.right}>
+                        <Text style={styles.progress}>1/3</Text>
+                        <TouchableOpacity onPress={()=>{if(selectedItems.due.length>0 & selectedItems.str.length>0 & selectedItems.ticker.length>0){[updateMarket(),setMarket2(!market2),getOptions(selectedItems)]}}} >
+                            <Image source={require('../assets/next.png')} style={[styles.next, selectedItems.due.length>0 & selectedItems.str.length>0 & selectedItems.ticker.length>0 ? styles.next:styles.nextInvalid]}/>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </Modal>
+            <BinanceProvider>
+                <MarketScreen2 market2={market2} updateMarket={() => { setMarket2(!market2) }} ></MarketScreen2>
+            </BinanceProvider>
         </View>
     )
 }
@@ -173,6 +184,28 @@ const styles = StyleSheet.create({
         textAlignVertical: 'center',
         fontWeight: '700',
         color: color.cream
+    },
+    right:{
+        position:'absolute',
+        right:0,
+        bottom:'25%',
+        height:200,
+        width:100,
+        alignItems:'center'
+    },
+    progress:{
+        textAlign:'center',
+        fontSize:24,
+        fontWeight:'900',
+        color:color.darkBlue,
+        flex:1
+    },
+    next:{
+        top:'-50%',
+        opacity:1
+    },
+    nextInvalid:{
+        opacity:.5
     }
 });
 export default MarketScreen1

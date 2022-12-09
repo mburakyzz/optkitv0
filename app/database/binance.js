@@ -1,6 +1,6 @@
 import { Text, View, FlatList, StyleSheet } from 'react-native'
 import React, { useState,useEffect, createContext } from 'react'
-
+import strategies from './strategies';
 
 export const Binance = createContext();
 
@@ -21,8 +21,8 @@ const BinanceProvider = (props)=>{
             due:i.symbol.split('-')[1],
             strike:i.symbol.split('-')[2],
             type:i.symbol.split('-')[3],
-            min:i.filters[0].minPrice,
-            max:i.filters[0].maxPrice}
+            S:i.filters[0].minPrice,
+            L:i.filters[0].maxPrice}
         }))]
     },[rawData])
     // Tickers
@@ -74,9 +74,63 @@ const BinanceProvider = (props)=>{
         setSelectedAssets(arr)
         }
     
+    // GET CRYPTO CURRENT PRICE
+
+    const getPrice = async (ticker) =>{
+        const response = await fetch('https://api.binance.com/api/v3/avgPrice?symbol='+ticker+'USDT')
+        const dataCur = await response.json();
+        return(dataCur)
+    }
+
+    // GET OPTION PRICE
+
+    const getOptPrice = async (symbol) =>{
+        const response = await fetch('https://eapi.binance.com/eapi/v1/mark?symbol='+symbol)
+        const dataOpt = await response.json();
+        return(dataOpt)
+    }
+    // SELECTED OPTION PRICES
+    const [options,setOptions] = useState([])
+    const getOptions = (selectedItems)=>{
+        const str = selectedItems.str
+        const due = selectedItems.due
+        const ticker = selectedItems.ticker
+        const selectedStrategy=[]
+        strategies.forEach((i)=>{
+            if (i.name==str){
+                i.options.forEach((x)=>{
+                    selectedStrategy.push(x)
+                })
+            }
+        })
+        rawData.forEach((i)=>{
+            if(i.underlying==(ticker+'USDT')){
+                if (i.symbol.split('-')[1]==due){
+                    getPrice(ticker).then(dataCur=>(
+                        selectedStrategy.forEach((x)=>{
+                            const type = x.type
+                            const mony = x.mony
+                            const pos = x.pos
+                            const id = x.id
+                            if (i.symbol.split('-')[3]==type){
+                                getOptPrice(i.symbol).then(dataOpt=>{
+                                    const underlying = dataCur.price
+                                    const strike = i.symbol.split('-')[2]
+                                    const market = dataOpt[0].markPrice
+                                    console.log(ticker,due,type,pos,underlying,strike,market,mony,id)
+
+                                })
+                            }
+                            
+                        })            
+                    ))
+                }
+            }
+        })
+        }
     
     return(
-        <Binance.Provider value={{binanceData,tickers,getDues,dues}}>
+        <Binance.Provider value={{binanceData,tickers,getDues,dues,options,getOptions}}>
             {props.children}
         </Binance.Provider>
     )
