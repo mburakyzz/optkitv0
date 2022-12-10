@@ -74,7 +74,7 @@ const MarketScreen1 = ({ market, updateMarket }) => {
                 </View>
             </Modal>
             <BinanceProvider>
-                <MarketScreen2 market2={market2} updateMarket={() => { setMarket2(!market2) }} ></MarketScreen2>
+                <MarketScreen2 market2={market2} updateMarket2={() => { setMarket2(!market2) }} ></MarketScreen2>
             </BinanceProvider>
         </View>
     )

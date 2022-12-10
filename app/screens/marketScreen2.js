@@ -8,8 +8,8 @@ import strategies from '../database/strategies'
 import { Button } from 'react-native';
 
 
-const MarketScreen2 = ({ market2, updateMarket,selectedItems }) => {
-    const { options,getOptions } = useContext(Binance)
+const MarketScreen2 = ({ market2, updateMarket2,selectedItems }) => {
+    const { options } = useContext(Binance)
 
     return (
         <View style={styles.modalView}>
@@ -20,7 +20,7 @@ const MarketScreen2 = ({ market2, updateMarket,selectedItems }) => {
                 supportedOrientations={['landscape']}
                 style={styles.modalStyle}>
                 <View style={styles.modalContainer}>
-                    <TouchableWithoutFeedback onPress={updateMarket}>
+                    <TouchableWithoutFeedback onPress={updateMarket2}>
                         <Image source={require('../assets/close.png')} style={styles.closeBtn} />
                     </TouchableWithoutFeedback>
                     <View style={styles.right}>
@@ -29,7 +29,7 @@ const MarketScreen2 = ({ market2, updateMarket,selectedItems }) => {
                             <Image source={require('../assets/next.png')} style={[styles.next,]}/>
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={{ position: 'absolute', right: 0, bottom: 0 }} onPress={() => { console.log('sa') }}><Text>State Nedir?</Text></TouchableOpacity>
+                    <TouchableOpacity style={{ position: 'absolute', right: 0, bottom: 0 }} onPress={() => { console.log(options) }}><Text>State Nedir?</Text></TouchableOpacity>
                 </View>
             </Modal>
         </View>

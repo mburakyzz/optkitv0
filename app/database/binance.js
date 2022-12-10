@@ -1,18 +1,19 @@
 import { Text, View, FlatList, StyleSheet } from 'react-native'
 import React, { useState,useEffect, createContext } from 'react'
 import strategies from './strategies';
+import { resolvePlugin } from '@babel/core';
 
 export const Binance = createContext();
 
 const BinanceProvider = (props)=>{
-    // Get Data
+    // GET EXCHANGE INFO
     const [rawData,setRawData] = useState([])
     useEffect(()=>{
         fetch('https://eapi.binance.com/eapi/v1/exchangeInfo')
         .then(res=>res.json())
         .then(x => setRawData(x.optionSymbols))
     },[])  
-    // Ordered Data
+    // FILTERS EXCHANGE INFO
     const [binanceData,setBinanceData] = useState([])
     useEffect(()=>{
         [setBinanceData(rawData.map((i)=>{
@@ -25,7 +26,7 @@ const BinanceProvider = (props)=>{
             L:i.filters[0].maxPrice}
         }))]
     },[rawData])
-    // Tickers
+    // FETCHES TICKERS
     const[tickersData,setTickersData] = useState([])
     const getTickers = ()=>{
         for (i=0;i<binanceData.length;i++){
@@ -45,7 +46,7 @@ const BinanceProvider = (props)=>{
         }))
     },[tickersData])
 
-    // DUE DATES
+    // FETCHES DUE DATES
     const[dues,setDues] = useState([])
     const getDues = (x)=>{
         const arr = []
@@ -60,7 +61,8 @@ const BinanceProvider = (props)=>{
             return(i)
         }))
         }
-    // SELECTED ITEMS
+
+    // GETS SELECTED TICKER,DUE AND STRATEGY FROM UI
     const[selectedAssets,setSelectedAssets] = useState([])
     const getAssets = (x,y)=>{
         const arr = []
@@ -74,27 +76,31 @@ const BinanceProvider = (props)=>{
         setSelectedAssets(arr)
         }
     
-    // GET CRYPTO CURRENT PRICE
+    // GETS A CRYPTO CURRENCIES CURRENT PRICE
 
     const getPrice = async (ticker) =>{
         const response = await fetch('https://api.binance.com/api/v3/avgPrice?symbol='+ticker+'USDT')
         const dataCur = await response.json();
-        return(dataCur)
+        return(dataCur.price)
     }
 
-    // GET OPTION PRICE
+    // GETS OPTION PRICE FOR SYMBOL
 
     const getOptPrice = async (symbol) =>{
         const response = await fetch('https://eapi.binance.com/eapi/v1/mark?symbol='+symbol)
         const dataOpt = await response.json();
-        return(dataOpt)
+        return([Number(dataOpt[0].markPrice)])
     }
     // SELECTED OPTION PRICES
     const [options,setOptions] = useState([])
-    const getOptions = (selectedItems)=>{
+    const getOptions = async (selectedItems)=>{
+        // VARIABLES
         const str = selectedItems.str
         const due = selectedItems.due
         const ticker = selectedItems.ticker
+        const underlyingPrice = await getPrice(ticker)
+
+        // GETS THE SELECTED STRATEGY FROM strategy.js
         const selectedStrategy=[]
         strategies.forEach((i)=>{
             if (i.name==str){
@@ -103,31 +109,86 @@ const BinanceProvider = (props)=>{
                 })
             }
         })
+
+        // GETS BINANCE OPTIONS TICKERS THAT ARE AVAILABLE
+        const potentialOptions = []
         rawData.forEach((i)=>{
             if(i.underlying==(ticker+'USDT')){
                 if (i.symbol.split('-')[1]==due){
-                    getPrice(ticker).then(dataCur=>(
-                        selectedStrategy.forEach((x)=>{
-                            const type = x.type
-                            const mony = x.mony
-                            const pos = x.pos
-                            const id = x.id
-                            if (i.symbol.split('-')[3]==type){
-                                getOptPrice(i.symbol).then(dataOpt=>{
-                                    const underlying = dataCur.price
-                                    const strike = i.symbol.split('-')[2]
-                                    const market = dataOpt[0].markPrice
-                                    console.log(ticker,due,type,pos,underlying,strike,market,mony,id)
-
-                                })
-                            }
-                            
-                        })            
-                    ))
+                    potentialOptions.push(i.symbol)
                 }
             }
         })
+
+        // FETCHES THE STRIKE PRICES FROM POTENTIAL OPTIONS
+        const potentialStrikes = []
+        potentialOptions.forEach(x=>{
+            const strikePrice = Number(x.split('-')[2])
+            if (!potentialStrikes.includes(strikePrice)){
+                potentialStrikes.push(strikePrice)
+            }
+        })
+        potentialStrikes.sort(function(a, b) {return a - b;})
+
+        // FILTERS THE MONYNESS OF EACH STRATEGY IN POTENTIAL STRIKES AND RETURNS [[],[],[]...]
+        const selectedStrikes = []
+        const max = Math.max(...potentialStrikes)
+        const min = Math.min(...potentialStrikes)
+        const maxStep = (max-underlyingPrice)/5
+        const minStep = (underlyingPrice-min)/5
+        const firstMony = potentialStrikes.filter(x => x <= min+2*minStep && x>=min);
+        const secondMony = potentialStrikes.filter(x => x <= min+4*minStep && x > min+2*minStep);
+        const thirdMony = potentialStrikes.filter(x => x > min+4*minStep && x < max-4*maxStep);
+        const fourthMony = potentialStrikes.filter(x => x >= max-4*maxStep && x <= max-2*maxStep);
+        const fifthMony = potentialStrikes.filter(x =>  x > max-4*maxStep);
+        
+        selectedStrategy.forEach(x=>{
+            const arr2 = []
+            if (x.mony.includes(1)){
+                firstMony.forEach(x=>arr2.push(x))
+            }
+            if (x.mony.includes(2)){
+                secondMony.forEach(x=>arr2.push(x))
+            }
+            if (x.mony.includes(3)){
+                thirdMony.forEach(x=>arr2.push(x))
+            }
+            if (x.mony.includes(4)){
+                fourthMony.forEach(x=>arr2.push(x))
+            }
+            if (x.mony.includes(5)){
+                fifthMony.forEach(x=>arr2.push(x))
+            }
+            selectedStrikes.push(arr2)
+        })    
+         // FILTERS THE TYPE OF EACH STRATEGY IN POTENTIAL STRIKES AND RETURNS [[],[],[]...]
+        const selectedTypes =[]
+        selectedStrategy.forEach(x=>{
+            selectedTypes.push([x.type])
+        }) 
+        // FILTERS THE POSITION OF EACH STRATEGY IN POTENTIAL STRIKES AND RETURNS [[],[],[]...]
+        const selectedPositions =[]
+        selectedStrategy.forEach(x=>{
+            selectedPositions.push([x.pos])
+        }) 
+        // GETS THE COSTS FOR SELECTED STRIKES
+        const selectedCosts = []
+        for (i=0;i<selectedStrikes.length;i++){
+            arr = []
+            for (j=0;j<selectedStrikes[i].length;j++){
+                const symbol = ticker+'-'+due+'-'+selectedStrikes[i][j]+'-'+selectedTypes[i]
+                arr.push(await getOptPrice(symbol))
+            }
+            selectedCosts.push(arr)
         }
+        console.log('Costs: '+[selectedCosts])
+        console.log('Strikes: '+[selectedStrikes])
+        console.log('Types: '+[selectedTypes])
+        console.log('Positions: '+[selectedPositions])
+        console.log('Due: '+[due])
+        console.log('ticker: '+[ticker])
+        
+    }
     
     return(
         <Binance.Provider value={{binanceData,tickers,getDues,dues,options,getOptions}}>
@@ -137,3 +198,32 @@ const BinanceProvider = (props)=>{
 }
 
 export default BinanceProvider
+
+
+// const filterStrikes = (x)=>{
+//     const arr = []
+//     const maxStep = (Math.max(...potentialStrikes)-underlyingPrice)/5
+//     const minStep = (underlyingPrice-Math.min(...potentialStrikes))/5
+//     for (i=0;i<potentialStrikes.length;i++){
+//         if (x.mony.includes(1) && potentialStrikes[i]<underlyingPrice-3*minStep){
+//             arr.push(potentialStrikes[i])
+//         }
+//         if (x.mony.includes(2) && potentialStrikes[i]<underlyingPrice-1*minStep && potentialStrikes[i]>=underlyingPrice-3*minStep ){
+//             arr.push(potentialStrikes[i])
+//         }
+//         if (x.mony.includes(3) && potentialStrikes[i]<underlyingPrice+maxStep && potentialStrikes[i]>=underlyingPrice-minStep ){
+//             arr.push(potentialStrikes[i])
+//         }
+//         if (x.mony.includes(4) && potentialStrikes[i]<underlyingPrice+3*maxStep && potentialStrikes[i]>=underlyingPrice+maxStep ){
+//             arr.push(potentialStrikes[i])
+//         }
+//         if (x.mony.includes(5) && potentialStrikes[i]>=underlyingPrice+3*maxStep ){
+//             arr.push(potentialStrikes[i])
+//         }
+//     }
+//     return (arr)    
+    
+// }
+
+// const getIt = await selectedStrategy.forEach(x=>{filterStrikes(x)})
+// getIt()
