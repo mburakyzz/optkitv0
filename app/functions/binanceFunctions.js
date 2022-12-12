@@ -69,7 +69,7 @@ const BinanceFunctions = {
             const type = await x.type
             arr.push(type)
         }
-        return(arr)
+        return(JSON.stringify(arr))
     },
 
     // FILTERS THE POSITION OF EACH STRATEGY IN POTENTIAL STRIKES AND RETURNS [[],[],[]...]
@@ -79,7 +79,7 @@ const BinanceFunctions = {
             const pos = await x.pos
             arr2.push(pos)
         }
-        return(arr2)
+        return(JSON.stringify(arr2))
     },
 
     // GETS BLACK-SCHOLES OPTION PRICE FOR SELECTED STRIKE PRICES

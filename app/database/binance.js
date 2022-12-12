@@ -83,10 +83,10 @@ const BinanceProvider = (props)=>{
 
     const [potentialOptions,setPotentialOptions] = useState(null)
     useEffect(()=>{
-        if (selectedDue && selectedTicker){
+        if (selectedDue && selectedTicker && selectedStrategy){
             x = BinanceFunctions.getPotentialOptions(rawData,selectedDue,selectedTicker)
             setPotentialOptions(x)
-        }
+        }else{setPotentialOptions(null)}
         
     },[selectedDue,selectedTicker,selectedStrategy])
 
@@ -95,7 +95,7 @@ const BinanceProvider = (props)=>{
         if (potentialOptions){
             x = BinanceFunctions.getPotentialStrikes(potentialOptions)
             setPotentialStrikes(x)
-        }
+        }else{setPotentialStrikes(null)}
     },[potentialOptions])
     
     const [selectedStrikes,setSelectedStrikes] = useState(null)
@@ -105,7 +105,7 @@ const BinanceProvider = (props)=>{
                 const underlying = await getPrice(selectedTicker)
                 const x = BinanceFunctions.selectStrikePrices(underlying,potentialStrikes,selectedStrategy)
                 setSelectedStrikes(x)
-            }
+            }else{setSelectedStrikes(null)}
         }
         go()
     },[potentialStrikes])
@@ -115,18 +115,23 @@ const BinanceProvider = (props)=>{
         const go = async()=>{
             if (selectedStrategy){
                 x = await BinanceFunctions.selectTypes(selectedStrategy)
-                setSelectedTypes(x)
-            }
+                y = await JSON.parse(x)
+                setSelectedTypes(y)
+            }else{setSelectedTypes(null)}
         }
         go()
     },[selectedStrategy])
 
     const [selectedPositions,setSelectedPositions] = useState(null)
     useEffect(()=>{
-        if (selectedTypes){
-            const x = BinanceFunctions.selectPositions(selectedStrategy)
-            setSelectedPositions(x)
+        const go = async()=>{
+            if (selectedTypes){
+                const x = await BinanceFunctions.selectPositions(selectedStrategy)
+                const y = await JSON.parse(x)
+                setSelectedPositions(y)
+            }else{setSelectedPositions(null)}
         }
+        go()
     },[selectedTypes])
 
     const [selectedCosts,setSelectedCosts] = useState(null)
@@ -137,7 +142,7 @@ const BinanceProvider = (props)=>{
                 const x = await BinanceFunctions.selectCosts(getOptPrice,selectedTicker,selectedDue,selectedStrikes,selectedTypes,selectedPositions)
                 const y = await (JSON.parse(x))
                 setSelectedCosts(y)
-            }
+            }else{setSelectedCosts(null)}
         }
         go()
     },[selectedTypes,selectedStrikes,selectedStrategy])
@@ -148,7 +153,8 @@ const BinanceProvider = (props)=>{
         setSelectedDue,selectedDue,
         setSelectedTicker,selectedTicker,
         setSelectedStrategy,selectedStrategy,
-        selectedCosts,selectedStrikes}}>
+        selectedCosts,selectedStrikes,
+        selectedTypes,selectedPositions}}>
             {props.children}
         </Binance.Provider>
     )

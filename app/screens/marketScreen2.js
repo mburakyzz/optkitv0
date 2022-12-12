@@ -7,7 +7,7 @@ import { Binance } from '../database/binance'
 
 
 const MarketScreen2 = ({ market2, updateMarket2 }) => {
-    const { selectedCosts,selectedStrikes } = useContext(Binance)
+    const { selectedCosts,selectedStrikes,selectedTypes,selectedPositions,selectedTicker,selectedDue } = useContext(Binance)
     return (
         <View style={styles.modalView}>
             <Modal
@@ -26,7 +26,7 @@ const MarketScreen2 = ({ market2, updateMarket2 }) => {
                             <Image source={require('../assets/next.png')} style={[styles.next,]}/>
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={{ position: 'absolute', right: 0, bottom: 0 }} onPress={() => { console.log('Costs: '+selectedCosts,'Strikes: '+selectedStrikes) }}><Text>State Nedir?</Text></TouchableOpacity>
+                    <TouchableOpacity style={{ position: 'absolute', right: 0, bottom: 0 }} onPress={() => { console.log('Ticker: '+selectedTicker,'Due: '+selectedDue,'Types: '+selectedTypes,'Positions: '+selectedPositions,'Costs: '+selectedCosts,'Strikes: '+selectedStrikes) }}><Text>State Nedir?</Text></TouchableOpacity>
                 </View>
             </Modal>
         </View>

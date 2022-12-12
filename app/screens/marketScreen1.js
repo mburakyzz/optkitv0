@@ -77,6 +77,15 @@ const MarketScreen1 = ({ market, updateMarket }) => {
                             <Image source={require('../assets/next.png')} style={styles.next}/>
                         </TouchableOpacity>
                     </View>
+                    <TouchableOpacity style={{ position: 'absolute', left: 0, bottom: '15%', width:50,height:50}}  onPress={()=>{setSelectedStrategy(null)}} >
+                        <Image source={require('../assets/close.png')} style={{ width:50,height:50}}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ position: 'absolute', left: 0, bottom: '50%', width:50,height:50}}  onPress={()=>{setSelectedDue(null)}} >
+                        <Image source={require('../assets/close.png')} style={{ width:50,height:50}}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ position: 'absolute', left: 0, bottom: '70%', width:50,height:50}}  onPress={()=>{setSelectedTicker(null)}} >
+                        <Image source={require('../assets/close.png')} style={{ width:50,height:50}}/>
+                    </TouchableOpacity>
                 </View>
             </Modal>
             <MarketScreen2 market2={!market2} updateMarket2={() => { setMarket2(!market2) }} ></MarketScreen2>
