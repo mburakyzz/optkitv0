@@ -15,7 +15,8 @@ const MarketScreen1 = ({ market, updateMarket }) => {
          getDues, dues,
          setSelectedDue,selectedDue,
          setSelectedTicker,selectedTicker,
-         setSelectedStrategy,selectedStrategy,
+         setSelectedStrategy,
+         selectedStrikes,
          selectedCosts} = useContext(Binance)
     return (
         <View style={styles.modalView}>
@@ -69,18 +70,16 @@ const MarketScreen1 = ({ market, updateMarket }) => {
                             )}
                         />
                     </View>
-                    <TouchableOpacity style={{ position: 'absolute', right: 0, bottom: 0 }} onPress={() => {console.log('tic: '+selectedTicker,'due: '+selectedDue,'str: '+selectedStrategy ,'cost: '+selectedCosts)}}><Text>State Nedir?</Text></TouchableOpacity>
+                    <TouchableOpacity style={{ position: 'absolute', right: 0, bottom: 0 }} onPress={() => {console.log('tic: '+selectedTicker,'due: '+selectedDue,'strikes: '+selectedStrikes ,'cost: '+selectedCosts)}}><Text>State Nedir?</Text></TouchableOpacity>
                     <View style={styles.right}>
                         <Text style={styles.progress}>1/3</Text>
-                        <TouchableOpacity onPress={()=>{}} >
+                        <TouchableOpacity onPress={()=>{if(selectedTicker && selectedDue && selectedCosts && selectedStrikes){[setMarket2(!market),updateMarket()]}}} >
                             <Image source={require('../assets/next.png')} style={styles.next}/>
                         </TouchableOpacity>
                     </View>
                 </View>
             </Modal>
-            <BinanceProvider>
-                <MarketScreen2 market2={market2} updateMarket2={() => { setMarket2(!market2) }} ></MarketScreen2>
-            </BinanceProvider>
+            <MarketScreen2 market2={!market2} updateMarket2={() => { setMarket2(!market2) }} ></MarketScreen2>
         </View>
     )
 }

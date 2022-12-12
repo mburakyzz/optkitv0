@@ -4,13 +4,10 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import color from '../color'
 import { Binance } from '../database/binance'
-import strategies from '../database/strategies'
-import { Button } from 'react-native';
 
 
-const MarketScreen2 = ({ market2, updateMarket2,selectedItems }) => {
-    // const { options } = useContext(Binance)
-
+const MarketScreen2 = ({ market2, updateMarket2 }) => {
+    const { selectedCosts,selectedStrikes } = useContext(Binance)
     return (
         <View style={styles.modalView}>
             <Modal
@@ -29,7 +26,7 @@ const MarketScreen2 = ({ market2, updateMarket2,selectedItems }) => {
                             <Image source={require('../assets/next.png')} style={[styles.next,]}/>
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={{ position: 'absolute', right: 0, bottom: 0 }} onPress={() => { console.log(options) }}><Text>State Nedir?</Text></TouchableOpacity>
+                    <TouchableOpacity style={{ position: 'absolute', right: 0, bottom: 0 }} onPress={() => { console.log('Costs: '+selectedCosts,'Strikes: '+selectedStrikes) }}><Text>State Nedir?</Text></TouchableOpacity>
                 </View>
             </Modal>
         </View>

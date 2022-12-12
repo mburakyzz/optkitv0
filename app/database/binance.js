@@ -14,9 +14,11 @@ const BinanceProvider = (props)=>{
     }
     // GETS OPTION PRICE FOR SYMBOL
     const getOptPrice = async (symbol) =>{
-        const response = await fetch('https://eapi.binance.com/eapi/v1/mark?symbol='+symbol)
-        const dataOpt = await response.json();
-        return([Number(dataOpt[0].markPrice)])
+        try{
+            const response = await fetch('https://eapi.binance.com/eapi/v1/mark?symbol='+symbol)
+            const dataOpt = await response.json()
+            return(dataOpt[0].markPrice)
+        }catch{console.log('error on getOptPrice')}
     }
     // GET EXCHANGE INFO
     const [rawData,setRawData] = useState([])
@@ -82,7 +84,6 @@ const BinanceProvider = (props)=>{
     const [potentialOptions,setPotentialOptions] = useState(null)
     useEffect(()=>{
         if (selectedDue && selectedTicker){
-            BinanceFunctions.sa('potential options fireed')
             x = BinanceFunctions.getPotentialOptions(rawData,selectedDue,selectedTicker)
             setPotentialOptions(x)
         }
@@ -92,7 +93,6 @@ const BinanceProvider = (props)=>{
     const [potentialStrikes,setPotentialStrikes] = useState(null)
     useEffect(()=>{
         if (potentialOptions){
-            BinanceFunctions.sa('potential strikes fireed')
             x = BinanceFunctions.getPotentialStrikes(potentialOptions)
             setPotentialStrikes(x)
         }
@@ -100,39 +100,46 @@ const BinanceProvider = (props)=>{
     
     const [selectedStrikes,setSelectedStrikes] = useState(null)
     useEffect(()=>{
-        if (potentialStrikes && selectedStrategy){
-            getPrice(selectedTicker).then(underlying=>{
-                x = BinanceFunctions.selectStrikePrices(underlying,potentialStrikes,selectedStrategy)
+        const go = async ()=>{
+            if (potentialStrikes && selectedStrategy){
+                const underlying = await getPrice(selectedTicker)
+                const x = BinanceFunctions.selectStrikePrices(underlying,potentialStrikes,selectedStrategy)
                 setSelectedStrikes(x)
-            })
+            }
         }
+        go()
     },[potentialStrikes])
     
     const [selectedTypes,setSelectedTypes] = useState(null)
     useEffect(()=>{
-        if (selectedStrategy){
-            x = BinanceFunctions.selectTypes(selectedStrategy)
-            setSelectedTypes(x)
+        const go = async()=>{
+            if (selectedStrategy){
+                x = await BinanceFunctions.selectTypes(selectedStrategy)
+                setSelectedTypes(x)
+            }
         }
+        go()
     },[selectedStrategy])
 
     const [selectedPositions,setSelectedPositions] = useState(null)
     useEffect(()=>{
-        if (selectedStrategy){
-            x = BinanceFunctions.selectPositions(selectedStrategy)
+        if (selectedTypes){
+            const x = BinanceFunctions.selectPositions(selectedStrategy)
             setSelectedPositions(x)
         }
-    },[selectedStrategy])
+    },[selectedTypes])
 
     const [selectedCosts,setSelectedCosts] = useState(null)
     useEffect(()=>{
-        if (selectedTypes && selectedStrikes && selectedStrategy){
-            x = BinanceFunctions.selectCosts(getOptPrice,selectedTicker,selectedDue,selectedStrikes,selectedTypes)
-            .then(()=>{
-                setSelectedCosts(x)
-            })
-
+        setSelectedCosts(null)
+        const go = async ()=>{
+            if (selectedTypes && selectedStrikes && selectedStrategy){
+                const x = await BinanceFunctions.selectCosts(getOptPrice,selectedTicker,selectedDue,selectedStrikes,selectedTypes,selectedPositions)
+                const y = await (JSON.parse(x))
+                setSelectedCosts(y)
+            }
         }
+        go()
     },[selectedTypes,selectedStrikes,selectedStrategy])
     
     return(
@@ -141,7 +148,7 @@ const BinanceProvider = (props)=>{
         setSelectedDue,selectedDue,
         setSelectedTicker,selectedTicker,
         setSelectedStrategy,selectedStrategy,
-        selectedCosts}}>
+        selectedCosts,selectedStrikes}}>
             {props.children}
         </Binance.Provider>
     )
