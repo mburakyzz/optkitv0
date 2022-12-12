@@ -8,10 +8,15 @@ import strategies from '../database/strategies'
 import MarketScreen2 from './marketScreen2'
 import BinanceProvider from '../database/binance'
 
+
 const MarketScreen1 = ({ market, updateMarket }) => {
     const [market2, setMarket2] = useState(false)
-    const { tickers, getDues, dues,options,getOptions } = useContext(Binance)
-    const [selectedItems, setSelectedItems] = useState({ ticker: '', due: '', str: '' })
+    const { tickers,
+         getDues, dues,
+         setSelectedDue,selectedDue,
+         setSelectedTicker,selectedTicker,
+         setSelectedStrategy,selectedStrategy,
+         selectedCosts} = useContext(Binance)
     return (
         <View style={styles.modalView}>
             <Modal
@@ -30,7 +35,7 @@ const MarketScreen1 = ({ market, updateMarket }) => {
                             keyExtractor={(i) => i.id}
                             horizontal
                             renderItem={({ item }) => (
-                                <TouchableOpacity style={styles.tickerButton} onPress={() => { [getDues(item.symbol), setSelectedItems({ ...selectedItems, ticker: item.symbol })] }}>
+                                <TouchableOpacity style={styles.tickerButton} onPress={() => { [getDues(item.symbol),setSelectedTicker(item.symbol)]}}>
                                     <Text style={styles.tickerTxt}>
                                         {item.symbol}
                                     </Text>
@@ -44,7 +49,7 @@ const MarketScreen1 = ({ market, updateMarket }) => {
                             key={(i) => {dues.indexOf(i)+1}}
                             horizontal
                             renderItem={({ item }) => (
-                                <TouchableOpacity style={styles.dueButton} onPress={() => { [setSelectedItems({ ...selectedItems, due: item })] }}>
+                                <TouchableOpacity style={styles.dueButton} onPress={() => {setSelectedDue(item)}}>
                                     <Text style={styles.dueTxt}>
                                         {item}
                                     </Text>
@@ -58,17 +63,17 @@ const MarketScreen1 = ({ market, updateMarket }) => {
                             keyExtractor={(i) => i.id}
                             horizontal
                             renderItem={({ item }) => (
-                                <TouchableOpacity style={styles.strategyButton} onPress={() => { [setSelectedItems({ ...selectedItems, str: item.name })] }}>
+                                <TouchableOpacity style={styles.strategyButton} onPress={() => {setSelectedStrategy(item.options)}}>
                                     <Image source={(item.img)} style={styles.strategyButton} />
                                 </TouchableOpacity>
                             )}
                         />
                     </View>
-                    <TouchableOpacity style={{ position: 'absolute', right: 0, bottom: 0 }} onPress={() => { console.log(selectedItems) }}><Text>State Nedir?</Text></TouchableOpacity>
+                    <TouchableOpacity style={{ position: 'absolute', right: 0, bottom: 0 }} onPress={() => {console.log('tic: '+selectedTicker,'due: '+selectedDue,'str: '+selectedStrategy ,'cost: '+selectedCosts)}}><Text>State Nedir?</Text></TouchableOpacity>
                     <View style={styles.right}>
                         <Text style={styles.progress}>1/3</Text>
-                        <TouchableOpacity onPress={()=>{if(selectedItems.due.length>0 & selectedItems.str.length>0 & selectedItems.ticker.length>0){[updateMarket(),setMarket2(!market2),getOptions(selectedItems)]}}} >
-                            <Image source={require('../assets/next.png')} style={[styles.next, selectedItems.due.length>0 & selectedItems.str.length>0 & selectedItems.ticker.length>0 ? styles.next:styles.nextInvalid]}/>
+                        <TouchableOpacity onPress={()=>{}} >
+                            <Image source={require('../assets/next.png')} style={styles.next}/>
                         </TouchableOpacity>
                     </View>
                 </View>

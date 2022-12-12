@@ -9,7 +9,7 @@ import { Button } from 'react-native';
 
 
 const MarketScreen2 = ({ market2, updateMarket2,selectedItems }) => {
-    const { options } = useContext(Binance)
+    // const { options } = useContext(Binance)
 
     return (
         <View style={styles.modalView}>
