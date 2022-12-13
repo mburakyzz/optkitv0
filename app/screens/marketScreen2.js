@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, Modal, TouchableWithoutFeedback, Image, FlatList, TouchableOpacity, Dimensions, Pressable } from 'react-native'
+import { StyleSheet, Text, View, Modal, TouchableWithoutFeedback, Image, FlatList, TouchableOpacity, Dimensions, Pressable, Slider } from 'react-native'
 import React, { useContext, useState, useEffect } from 'react'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import color from '../color'
 import { Binance } from '../database/binance'
+import StrikeSlider from '../widgets/StrikeSlider';
 
 
 const MarketScreen2 = ({ market2, updateMarket2 }) => {
@@ -26,6 +27,7 @@ const MarketScreen2 = ({ market2, updateMarket2 }) => {
                             <Image source={require('../assets/next.png')} style={[styles.next,]}/>
                         </TouchableOpacity>
                     </View>
+                    <StrikeSlider style={styles.slider} strikes={selectedStrikes}/>
                     <TouchableOpacity style={{ position: 'absolute', right: 0, bottom: 0 }} onPress={() => { console.log('Ticker: '+selectedTicker,'Due: '+selectedDue,'Types: '+selectedTypes,'Positions: '+selectedPositions,'Costs: '+selectedCosts,'Strikes: '+selectedStrikes) }}><Text>State Nedir?</Text></TouchableOpacity>
                 </View>
             </Modal>
@@ -58,86 +60,6 @@ const styles = StyleSheet.create({
         top: 0,
         right: 0
     },
-    tickerContainer: {
-        width: 600 * windowWidth / 844,
-        height: 100,
-        borderWidth: 5,
-        borderColor: color.lightBlue,
-        position: 'absolute',
-        top: '5%',
-        left: '5%',
-    },
-    tickerButton: {
-        backgroundColor: color.darkBlue,
-        width: 80,
-        height: 80,
-        alignSelf: 'center',
-        margin: 10,
-        borderRadius: 15,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1
-    },
-    tickerTxt: {
-        width: '100%',
-        height: 80,
-        fontSize: 20,
-        textAlign: 'center',
-        textAlignVertical: 'center',
-        fontWeight: '700',
-        color: color.cream
-    },
-    dueContainer: {
-        width: 600 * windowWidth / 844,
-        height: 75,
-        borderWidth: 5,
-        borderColor: color.lightBlue,
-        position: 'absolute',
-        top: '37.5%',
-        left: '5%',
-    },
-    dueButton: {
-        backgroundColor: color.darkBlue,
-        width: 100,
-        height: 50,
-        alignSelf: 'center',
-        margin: 10,
-        borderRadius: 10
-    },
-    dueTxt: {
-        width: 100,
-        height: 50,
-        fontSize: 18,
-        textAlign: 'center',
-        textAlignVertical: 'center',
-        fontWeight: '700',
-        color: color.cream
-    },
-    strategyContainer: {
-        width: 600 * windowWidth / 844,
-        height: 124,
-        borderWidth: 5,
-        borderColor: color.lightBlue,
-        position: 'absolute',
-        top: '62%',
-        left: '5%',
-    },
-    strategyButton: {
-        width: 100,
-        height: 100,
-        alignSelf: 'center',
-        margin: 5
-
-    },
-    strategyTxt: {
-        width: 100,
-        height: 50,
-        fontSize: 18,
-        textAlign: 'center',
-        textAlignVertical: 'center',
-        fontWeight: '700',
-        color: color.cream
-    },
     right:{
         position:'absolute',
         right:0,
@@ -159,6 +81,13 @@ const styles = StyleSheet.create({
     },
     nextInvalid:{
         opacity:.5
+    },
+    slider:{
+        position:'absolute',
+        width:200,
+        height:600,
+        bottom:0,
+        left:0
     }
 });
 export default MarketScreen2
