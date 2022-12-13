@@ -1,19 +1,31 @@
 import React from 'react'
 import { AreaChart, Grid } from 'react-native-svg-charts'
-import * as shape from 'd3-shape'
+import { Defs, LinearGradient, Stop } from 'react-native-svg'
 import color from '../color'
 
 const OptionChart = () => {
-    const data = [50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80]
-    const fill = (y)=>{if(y>0){return(color.green)}else{return(color.red)}}
+    const data = [ -10, 0, 20, 20, 0, -10]
+    const min = Math.min(...data)
+    const max = Math.max(...data)
+    const y2 = max/-min
+    console.log(y2)
+
+    const Gradient = ({ index }) => (
+        <Defs key={index}>
+            <LinearGradient id={'gradient'} x1={'0%'} y1={'0%'} x2={'0%'} y2={'133%'}>
+                <Stop offset={'0%'} stopColor={color.green} stopOpacity={1} />
+                <Stop offset={'100%'} stopColor={color.red} stopOpacity={1} />
+            </LinearGradient>
+        </Defs>
+    )
     return (
         <AreaChart
-            style={{ height: 300 ,width:600,position:'absolute',left:0}}
+            style={{ height: 300,width:600,left:0,position:'absolute' }}
             data={data}
-            keys={[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]}
-            contentInset={{ top: 30, bottom: 30 }}
-            svg={{ fill:fill(1) }}
+            contentInset={{ top: 10, bottom: 10 }}
+            svg={{ fill: 'url(#gradient)' }}
         >
+            <Gradient />
         </AreaChart>
     )
 }
