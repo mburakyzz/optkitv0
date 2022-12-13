@@ -5,6 +5,7 @@ const windowHeight = Dimensions.get('window').height;
 import color from '../color'
 import { Binance } from '../database/binance'
 import StrikeSlider from '../widgets/StrikeSlider';
+import OptionChart from '../widgets/OptionChart';
 
 
 const MarketScreen2 = ({ market2, updateMarket2 }) => {
@@ -28,6 +29,7 @@ const MarketScreen2 = ({ market2, updateMarket2 }) => {
                         </TouchableOpacity>
                     </View>
                     <StrikeSlider style={styles.slider} strikes={selectedStrikes}/>
+                    <OptionChart style={styles.optionChart}/>
                     <TouchableOpacity style={{ position: 'absolute', right: 0, bottom: 0 }} onPress={() => { console.log('Ticker: '+selectedTicker,'Due: '+selectedDue,'Types: '+selectedTypes,'Positions: '+selectedPositions,'Costs: '+selectedCosts,'Strikes: '+selectedStrikes) }}><Text>State Nedir?</Text></TouchableOpacity>
                 </View>
             </Modal>
@@ -84,8 +86,15 @@ const styles = StyleSheet.create({
     },
     slider:{
         position:'absolute',
-        width:200,
-        height:600,
+        width:600,
+        height:100,
+        bottom:0,
+        left:0
+    },
+    optionChart:{
+        position:'absolute',
+        width:600,
+        height:300,
         bottom:0,
         left:0
     }
