@@ -154,7 +154,8 @@ const BinanceProvider = (props)=>{
         setSelectedTicker,selectedTicker,
         setSelectedStrategy,selectedStrategy,
         selectedCosts,selectedStrikes,
-        selectedTypes,selectedPositions}}>
+        selectedTypes,selectedPositions,
+        potentialStrikes}}>
             {props.children}
         </Binance.Provider>
     )
