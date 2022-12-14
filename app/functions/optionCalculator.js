@@ -8,6 +8,8 @@ export const OptionCalculator = createContext()
 const OptionCalculatorProvider = (props)=>{
     const { selectedCosts,selectedStrikes,selectedTypes,selectedPositions,selectedTicker,selectedDue,potentialStrikes } = useContext(Binance)
     const [currentValue,setCurrentValue] = useState(null)
+    const [range,setRange] = useState(null)
+    const [returns,setReturns] = useState(null)
     const selectedStrx = JSON.parse(selectedStrikes)
     if (currentValue){
         console.log('START')
@@ -65,15 +67,16 @@ const OptionCalculatorProvider = (props)=>{
             }
             const calculatedReturn = returns[0].map((x, idx) => returns.reduce((sum, curr) => sum + curr[idx], 0))
 
-            console.log('Range: '+range)
-            console.log('R0: '+returns[0])
-            console.log('R1: '+returns[1])
-            console.log('Return: '+calculatedReturn)
+            setRange(range)
+            setReturns(calculatedReturn)
+            // console.log('Range: '+range)
+            // console.log('Return: '+calculatedReturn)
         }
     },[currentValue])
     return(
         <OptionCalculator.Provider value={{
-            setCurrentValue
+            setCurrentValue,
+            range,returns
             }}>
             {props.children}
         </OptionCalculator.Provider>
