@@ -73,7 +73,7 @@ const MarketScreen1 = ({ market, updateMarket }) => {
                     <TouchableOpacity style={{ position: 'absolute', right: 0, bottom: 0 }} onPress={() => {console.log('tic: '+selectedTicker,'due: '+selectedDue,'strikes: '+selectedStrikes ,'cost: '+selectedCosts)}}><Text>State Nedir?</Text></TouchableOpacity>
                     <View style={styles.right}>
                         <Text style={styles.progress}>1/3</Text>
-                        <TouchableOpacity onPress={()=>{if(selectedTicker && selectedDue && selectedCosts && selectedStrikes){[setMarket2(!market),updateMarket()]}}} >
+                        <TouchableOpacity onPress={()=>{if(selectedTicker && selectedDue && selectedCosts && selectedStrikes){[setMarket2(!market2),updateMarket()]}}} >
                             <Image source={require('../assets/next.png')} style={styles.next}/>
                         </TouchableOpacity>
                     </View>
@@ -88,7 +88,7 @@ const MarketScreen1 = ({ market, updateMarket }) => {
                     </TouchableOpacity>
                 </View>
             </Modal>
-            <MarketScreen2 market2={!market2} updateMarket2={() => { setMarket2(!market2) }} ></MarketScreen2>
+            <MarketScreen2 market2={market2} updateMarket2={() => { setMarket2(!market2) }} ></MarketScreen2>
         </View>
     )
 }

@@ -6,10 +6,13 @@ import color from '../color'
 import { Binance } from '../database/binance'
 import StrikeSlider from '../widgets/StrikeSlider';
 import OptionChart from '../widgets/OptionChart';
-
+import {OptionCalculator} from '../functions/optionCalculator';
+import OptionCalculatorProvider from '../functions/optionCalculator';
 
 const MarketScreen2 = ({ market2, updateMarket2 }) => {
     const { selectedCosts,selectedStrikes,selectedTypes,selectedPositions,selectedTicker,selectedDue } = useContext(Binance)
+    const [returns,setReturns] = useState()
+
     return (
         <View style={styles.modalView}>
             <Modal
@@ -28,8 +31,10 @@ const MarketScreen2 = ({ market2, updateMarket2 }) => {
                             <Image source={require('../assets/next.png')} style={[styles.next,]}/>
                         </TouchableOpacity>
                     </View>
-                    <StrikeSlider style={styles.slider} strikes={selectedStrikes}/>
-                    <OptionChart style={styles.optionChart}/>
+                    <OptionCalculatorProvider>
+                        <StrikeSlider style={styles.slider} strikes={selectedStrikes}/>
+                        <OptionChart style={styles.optionChart}/>
+                    </OptionCalculatorProvider>
                     <TouchableOpacity style={{ position: 'absolute', right: 0, bottom: 0 }} onPress={() => { console.log('Ticker: '+selectedTicker,'Due: '+selectedDue,'Types: '+selectedTypes,'Positions: '+selectedPositions,'Costs: '+selectedCosts,'Strikes: '+selectedStrikes) }}><Text>State Nedir?</Text></TouchableOpacity>
                 </View>
             </Modal>
