@@ -28,8 +28,11 @@ const OptionChart = () => {
                 key = {range}
                 contentInset={{ top: 10, bottom: 10 }}
                 svg={{ fill: 'url(#gradient)' }}
+                animate
+                animationDuration={400}
             >
                 <Gradient />
+                <Grid direction={'BOTH'}/>
             </AreaChart>
         )
     }
