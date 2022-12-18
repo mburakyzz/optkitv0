@@ -5702,7 +5702,7 @@ react-native-svg-charts@^5.4.0:
 
 react-native-svg@^13.6.0:
   version "13.6.0"
-  resolved "https://registry.npmjs.org/react-native-svg/-/react-native-svg-13.6.0.tgz"
+  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-13.6.0.tgz#46e95a44aabbd778db7c46d8a1047da376b28058"
   integrity sha512-1wjHCMJ8siyZbDZ0MX5wM+Jr7YOkb6GADn4/Z+/u1UwJX8WfjarypxDF3UO1ugMHa+7qor39oY+URMcrgPpiww==
   dependencies:
     css-select "^5.1.0"
